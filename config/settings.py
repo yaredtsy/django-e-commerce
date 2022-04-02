@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     # 3-rf paty package
     'decart',
     'category',
-    'accounts'
+    'accounts',
+    'store',
 
 ]
 

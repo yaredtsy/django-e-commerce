@@ -27,14 +27,16 @@ class MyAccountManager(BaseUserManager):
             first_name = first_name,
             last_name = last_name,
             username = username,
+            password = password,
             email = self.normalize_email(email)
         )
         user.is_active = True
-        user.is_staff = True 
+     
         user.is_admin = True
         user.is_superadmin = True
-
+        user.is_superuser = True
         user.save(using=self._db)
+        return user
 
 
 class Account(AbstractBaseUser):
@@ -53,7 +55,7 @@ class Account(AbstractBaseUser):
     is_superadmin = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELD = ['username','first_name','last_name']
+    REQUIRED_FIELDS = ['username','first_name','last_name']
 
     objects = MyAccountManager()
     
@@ -63,5 +65,10 @@ class Account(AbstractBaseUser):
     def has_perm(self,perm,obj=None):
         return self.is_admin
 
-    def has_model_perms(self,add,label):
+    def has_module_perms(self,app_label):
         return True
+    
+    @property
+    def is_staff(self):
+        return self.is_admin
+
