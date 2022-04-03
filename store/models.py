@@ -1,4 +1,3 @@
-from itertools import product
 from xml.parsers.expat import model
 from django.db import models
 from django.urls import reverse
