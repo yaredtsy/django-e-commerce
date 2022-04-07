@@ -6,7 +6,7 @@ class Cart(models.Model):
     cart_id = models.CharField(max_length=255,blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
+    def __unicode__(self):
         self.cart_id
 
 class CartItem(models.Model):
@@ -18,5 +18,5 @@ class CartItem(models.Model):
 
     def sub_total(self):
         return self.product.price * self.qunatity
-    def __str__(self):
+    def __unicode__(self):
         return self.product
