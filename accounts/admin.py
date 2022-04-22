@@ -5,13 +5,13 @@ from django.contrib.auth.admin import UserAdmin
 
 
 
-class AccountAdmin(UserAdmin):
-    list_display = ('email', 'username', 'first_name','last_name','last_login','date_joined','is_active')
-    list_display_links = ('email', 'username', 'first_name')
-    readonly_fields = ('last_login','date_joined')
-    ordering = ('-date_joined',)
+# class AccountAdmin(UserAdmin):
+#     list_display = ('email', 'username', 'first_name','last_name','last_login','date_joined','is_active')
+#     list_display_links = ('email', 'username', 'first_name')
+#     readonly_fields = ('last_login','date_joined')
+#     ordering = ('-date_joined',)
 
-    filter_horizontal = ()
-    list_filter = ()
-    filedsets = ()
-admin.site.register(Account,AccountAdmin)
+#     filter_horizontal = ()
+#     list_filter = ()
+#     filedsets = ()
+admin.site.register(Account)
