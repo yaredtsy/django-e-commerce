@@ -1,4 +1,3 @@
-from itertools import product
 from xml.parsers.expat import model
 from django.db import models
 from django.urls import reverse
@@ -20,6 +19,7 @@ class Product(models.Model):
 
     def get_url(self):
         return reverse('product_detail',args=[self.category.slug,self.slug])
+
     def __unicode__(self):
         return self.category
     
@@ -46,3 +46,4 @@ class Variation(models.Model):
 
     def __str__(self):
         return self.variation_value
+
