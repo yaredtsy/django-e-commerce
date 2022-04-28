@@ -9,7 +9,7 @@ class MyAccountManager(BaseUserManager):
             raise ValueError('Email address is required')
         
         if not username:
-            raise ValueError('Username must have an username')
+            raise ValueError('User must have an username')
 
         user = self.model(
             email = self.normalize_email(email),
@@ -19,6 +19,7 @@ class MyAccountManager(BaseUserManager):
         )
 
         user.set_password(password)
+        user.is_active = True
         user.save(using=self._db)
         return user
 
@@ -31,7 +32,7 @@ class MyAccountManager(BaseUserManager):
             email = self.normalize_email(email)
         )
         user.is_active = True
-     
+        user.is_staff = True
         user.is_admin = True
         user.is_superadmin = True
         user.is_superuser = True

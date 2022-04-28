@@ -50,6 +50,7 @@ def add_cart(request,product_id):
     return redirect('cart')
 
 def remove_cart(request,product_id):
+    
     cart  = Cart.objects.get(cart_id= _cart_id(request))
     product = get_object_or_404(Product,id=product_id)
     cart_item = CartItem.objects.get(product=product,cart=cart)
@@ -61,6 +62,7 @@ def remove_cart(request,product_id):
         cart_item.delete()
     return redirect('cart')
 
+
 def remove_cart_item(request,product_id):
     cart = Cart.objects.get(cart_id= _cart_id(request))
 
@@ -71,9 +73,7 @@ def remove_cart_item(request,product_id):
     return redirect('cart')
     
 def cart(request,total=0,qunatity=0,cart_items=None):
-
     try:
-
         cart = Cart.objects.get(cart_id=_cart_id(request))
         cart_items = CartItem.objects.filter(cart=cart,is_active=True)
 
@@ -84,6 +84,7 @@ def cart(request,total=0,qunatity=0,cart_items=None):
         grand_total = total+tax
     except ObjectDoesNotExist:
         pass
+
     context = {
         'total':total,
         'qunatity':qunatity,
@@ -91,4 +92,5 @@ def cart(request,total=0,qunatity=0,cart_items=None):
         'tax':tax,
         'grand_total':grand_total,
     }
+
     return render(request, 'store/cart.html',context)
