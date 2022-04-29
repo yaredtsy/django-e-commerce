@@ -143,7 +143,6 @@ def resetpassword(request,uidb64,token):
         return redirect('resetpass')
     else:
         messages.error(request,'This link has been expired')
-
     return redirect('login')
 
 def resetpass(request):
